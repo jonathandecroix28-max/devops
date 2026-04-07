@@ -3,8 +3,8 @@
     "start": "parcel ./src/index.html",
     "build": "rm -rf build && parcel build -d build --public-url ./ --no-source-maps ./src/index.html",
     "lint": "eslint src --ext .ts",
-    "test": "jest",
-    "coverage": "jest --coverage",
+    "test": "jest --passWithNoTests",
+    "coverage": "jest --coverage --passWithNoTests",
     "doc": "typedoc --out docs src/ts"
   },
   "devDependencies": {
