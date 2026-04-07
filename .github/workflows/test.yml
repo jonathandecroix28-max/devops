@@ -21,7 +21,7 @@ jobs:
 
       - name: Vérification de la qualité (Linter) 🧹
         # On tente de lancer eslint sur le dossier src
-        run: npx eslint src --ext .ts
+        run: npx eslint@8.57.0 src --ext .ts
 
         env:
           ESLINT_USE_FLAT_CONFIG: false
