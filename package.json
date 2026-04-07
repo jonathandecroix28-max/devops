@@ -2,13 +2,22 @@
   "scripts": {
     "start": "parcel ./src/index.html",
     "build": "rm -rf build && parcel build -d build --public-url ./ --no-source-maps ./src/index.html",
-    "zip": "rm -f bundle.zip && cd build && bestzip ../bundle.zip *",
-    "bundle": "yarn build && yarn zip"
+    "lint": "eslint src --ext .ts",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "doc": "typedoc --out docs src/ts"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.0",
+    "@typescript-eslint/parser": "^8.58.0",
     "bestzip": "^2.2.0",
+    "eslint": "^10.2.0",
+    "jest": "^30.3.0",
     "parcel-bundler": "^1.12.5",
     "sass": "^1.39.0",
+    "ts-jest": "^29.4.9",
+    "typedoc": "^0.28.18",
     "typescript": "^4.4.2"
   }
 }

@@ -1,17 +1,41 @@
-name: Mon premier test
+name: Pipeline de Qualité
 on: 
   push:
-    branches:
-      - main
+  workflow_dispatch: # Permet le lancement manuel 🖱️
 
 jobs:
-  affichage-et-liste:
+  pipeline-devops:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout du code
+      - name: Récupération du code 📥
         uses: actions/checkout@v3
 
-      - name: Affichage d'un message
-        run: echo "Hello Github Actions!"
-      - name: Affichage de la liste des fichiers
-        run: ls -la
+      - name: Installation de Node.js 🟢
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Installation des dépendances 📦
+        run: npm install
+
+      - name: Vérification de la qualité (Linter) 🧹
+        # On tente de lancer eslint sur le dossier src
+        run: npx eslint src --ext .ts
+        # Si eslint échoue, on affiche un message d'erreur
+        continue-on-error: false
+
+      - name: Exécution des tests unitaires 🧪
+        run: npm test
+        # Si les tests échouent, on affiche un message d'erreur
+        continue-on-error: false
+
+      - name: Build du projet 🏗️
+        run: npm run build
+        # Si le build échoue, on affiche un message d'erreur
+        continue-on-error: false
+
+      - name: Analyse de la couverture de code 📊  
+        run: npm run coverage
+        # Si l'analyse échoue, on affiche un message d'erreur
+        continue-on-error: false
