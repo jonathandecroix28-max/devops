@@ -17,7 +17,7 @@ jobs:
           cache: 'npm'
 
       - name: Installation des dépendances 📦
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Vérification de la qualité (Linter) 🧹
         # On tente de lancer eslint sur le dossier src
