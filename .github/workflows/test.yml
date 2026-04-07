@@ -20,8 +20,9 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Vérification de la qualité (Linter) 🧹
-        # On tente de lancer eslint sur le dossier src
-        run: npx eslint@8.57.0 src --ext .ts
+        # On utilise le script défini dans package.json au lieu de npx direct
+        run: npm run lint
+        
 
         env:
           ESLINT_USE_FLAT_CONFIG: false
